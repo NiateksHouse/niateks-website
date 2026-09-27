@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NIATEKS HOUSE — Website Imagery: Current State &amp; Quality Roadmap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory:#F5F2EC; --charcoal:#252522; --sand:#DED7CA; --olive:#73765E; --terracotta:#B66A4A;
+    --graphite:#55524B; --paper:#FBFAF6; --line:#E2DCD0;
+    --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+    --sans:"Inter",-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{animation:none!important;transition:none!important}}
+  body{background:var(--ivory);color:var(--charcoal);font:16px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  section{padding:64px 0}
+  .label{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--terracotta)}
+  h1{font:600 clamp(34px,5vw,54px)/1.08 var(--serif);letter-spacing:.01em;margin:14px 0 12px}
+  h2{font:600 clamp(26px,3.4vw,36px)/1.15 var(--serif);margin:12px 0 8px}
+  .sub{color:var(--graphite);max-width:640px}
+  a{color:inherit}
+
+  /* header */
+  header.masthead{padding:72px 0 8px;border-bottom:1px solid var(--line)}
+  .stats{display:flex;flex-wrap:wrap;gap:12px;margin:30px 0 44px}
+  .stat{background:var(--paper);border:1px solid var(--line);padding:14px 20px;min-width:130px}
+  .stat b{display:block;font:600 30px/1 var(--serif)}
+  .stat span{font-size:12px;color:var(--graphite);letter-spacing:.04em}
+
+  /* section map ribbon */
+  .map{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+  .sec{border:1px solid var(--line);background:var(--paper);padding:14px 14px 12px;min-width:158px;flex:1 1 158px;position:relative}
+  .sec--dark{background:var(--charcoal);border-color:var(--charcoal);color:var(--ivory)}
+  .sec--dark .sec-sub{color:#B9B4A8}
+  .sec-name{font:600 17px/1.2 var(--serif)}
+  .sec-sub{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--graphite);margin-top:2px}
+  .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+  .slotchip{width:30px;height:30px;border:none;border-radius:50%;font:600 12.5px/1 var(--sans);cursor:pointer;color:#fff;transition:transform .15s ease}
+  .slotchip:hover{transform:scale(1.12)}
+  .slotchip--ai{background:var(--charcoal);box-shadow:0 0 0 2px var(--ivory),0 0 0 3.5px var(--charcoal)}
+  .sec--dark .slotchip--ai{box-shadow:0 0 0 2px var(--charcoal),0 0 0 3.5px var(--ivory)}
+  .slotchip--stock{background:var(--olive)}
+  .slotchip--hold{background:var(--sand);color:var(--charcoal)}
+  .legend{display:flex;flex-wrap:wrap;gap:22px;margin-top:20px;font-size:13px;color:var(--graphite)}
+  .legend i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:7px;vertical-align:-1px}
+  .lg-ai{background:var(--charcoal)} .lg-stock{background:var(--olive)} .lg-hold{background:var(--sand)}
+  .mapnote{margin-top:16px;font-size:13.5px;color:var(--graphite);max-width:720px}
+
+  /* filter chips */
+  .filters{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 26px}
+  .fbtn{font:500 13px/1 var(--sans);letter-spacing:.02em;padding:9px 16px;background:transparent;border:1px solid var(--charcoal);color:var(--charcoal);cursor:pointer;transition:background .15s,color .15s}
+  .fbtn:hover{background:var(--sand)}
+  .fbtn[aria-pressed="true"]{background:var(--charcoal);color:var(--ivory)}
+
+  /* slot cards */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:18px}
+  .card{background:var(--paper);border:1px solid var(--line);padding:20px 20px 16px;scroll-margin:90px}
+  .card.flash{animation:flashOutline .8s ease-out 2}
+  @keyframes flashOutline{0%{box-shadow:0 0 0 0 rgba(182,106,74,.85)}100%{box-shadow:0 0 0 16px rgba(182,106,74,0)}}
+  @media (prefers-reduced-motion:reduce){.card.flash{outline:2px solid var(--terracotta)}}
+  .card[data-src="hold"]{background:transparent;border-style:dashed}
+  .card.is-hidden{display:none}
+  .card-head{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px}
+  .num{flex:none;width:32px;height:32px;border-radius:50%;background:var(--charcoal);color:var(--ivory);font:600 14px/32px var(--sans);text-align:center}
+  .card h3{font:600 21px/1.15 var(--serif)}
+  .sel{font:400 11.5px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--graphite);word-break:break-all}
+  .badges{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 14px}
+  .badge{font:600 10.5px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;padding:6px 10px}
+  .b-ai{background:var(--charcoal);color:var(--ivory)}
+  .b-stock{background:var(--olive);color:#fff}
+  .b-hold{background:var(--sand);color:var(--charcoal);border:1px dashed var(--graphite)}
+  .b-must,.b-rec,.b-defer{background:transparent;color:var(--charcoal);border:1px solid var(--line)}
+  .b-must::before,.b-rec::before,.b-defer::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:0}
+  .b-must::before{background:var(--terracotta)} .b-rec::before{background:var(--olive)} .b-defer::before{background:var(--sand);border:1px solid var(--graphite)}
+  .ratio-row{display:flex;align-items:flex-end;gap:14px;margin:6px 0 14px;min-height:56px}
+  .rg{display:inline-block;height:52px;border:1.5px solid var(--charcoal);background:repeating-linear-gradient(135deg,rgba(222,215,202,.55) 0 6px,transparent 6px 12px)}
+  .ratio-txt{font-size:12px;color:var(--graphite);line-height:1.5}
+  .ratio-txt code{font-family:ui-monospace,Menlo,Consolas,monospace;color:var(--charcoal)}
+  dl.rows{display:grid;grid-template-columns:auto 1fr;gap:7px 14px;font-size:13.5px}
+  dl.rows dt{font:600 10.5px/1.7 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--terracotta);white-space:nowrap}
+  dl.rows dd{color:var(--charcoal)}
+  dl.rows dd code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;background:var(--ivory);padding:1px 5px;border:1px solid var(--line)}
+  .card .kw{margin-top:12px;padding-top:10px;border-top:1px solid var(--line);font-size:12.5px;color:var(--graphite)}
+  .card .kw b{color:var(--charcoal);font-weight:600}
+
+  /* quality gaps (dark) */
+  .dark-band{background:var(--charcoal);color:var(--ivory)}
+  .dark-band .sub{color:#B9B4A8}
+  .dark-band .label{color:#D89A7E}
+  .gap{border-top:1px solid #3D3B36;padding:26px 0}
+  .gap:first-of-type{border-top:none}
+  .gap-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:12px}
+  .gap-no{font:600 15px/1 var(--sans);color:#D89A7E}
+  .gap h3{font:600 23px/1.2 var(--serif)}
+  .pill{font:600 10px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;padding:6px 10px;border:1px solid #565349;color:#D6D1C4}
+  .pill--now{border-color:var(--terracotta);color:#E8B29A}
+  .tt{display:grid;grid-template-columns:1fr 34px 1fr;gap:12px;align-items:stretch}
+  .tt .today,.tt .target{padding:14px 16px;font-size:14px}
+  .tt .today{background:#2E2C28;border-left:2px solid #6B675C;color:#C9C4B8}
+  .tt .target{background:#2E2C28;border-left:2px solid var(--olive);color:var(--ivory)}
+  .tt .tag{display:block;font:600 10px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;margin-bottom:7px}
+  .tt .today .tag{color:#98937F} .tt .target .tag{color:#A8B08D}
+  .tt .arrow{display:flex;align-items:center;justify-content:center;color:#D89A7E;font-size:18px}
+  @media (max-width:720px){.tt{grid-template-columns:1fr}.tt .arrow{transform:rotate(90deg);justify-content:flex-start;height:18px}}
+
+  /* rules chips */
+  .ban{display:inline-block;font-size:13px;padding:8px 13px;margin:0 8px 10px 0;background:var(--paper);border:1px solid var(--line);color:var(--graphite);text-decoration:line-through;text-decoration-color:var(--terracotta);text-decoration-thickness:1.5px}
+  .rule-list{margin-top:22px;display:grid;gap:12px;max-width:820px}
+  .rule-list li{list-style:none;display:flex;gap:12px;font-size:14.5px}
+  .rule-list .tick{flex:none;width:20px;height:20px;border:1.5px solid var(--olive);color:var(--olive);font:600 12px/20px var(--sans);text-align:center;margin-top:2px}
+
+  /* timeline */
+  .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:30px;counter-reset:step}
+  @media (max-width:900px){.steps{grid-template-columns:1fr 1fr}}
+  @media (max-width:560px){.steps{grid-template-columns:1fr}}
+  .step{position:relative;background:var(--paper);border:1px solid var(--line);padding:18px 16px 16px}
+  .step::before{counter-increment:step;content:"0" counter(step);font:600 26px/1 var(--serif);color:var(--terracotta);display:block;margin-bottom:8px}
+  .step b{display:block;font:600 14.5px/1.3 var(--sans);margin-bottom:5px}
+  .step span{font-size:13px;color:var(--graphite)}
+  .step em{display:block;margin-top:9px;font:500 11px/1.4 var(--sans);font-style:normal;letter-spacing:.06em;text-transform:uppercase;color:var(--olive)}
+
+  /* checklist */
+  .dof{columns:2;gap:40px;max-width:900px;margin-top:22px}
+  @media (max-width:700px){.dof{columns:1}}
+  .dof li{list-style:none;position:relative;padding-left:28px;margin-bottom:11px;font-size:14.5px;break-inside:avoid}
+  .dof li::before{content:"✓";position:absolute;left:0;top:0;width:18px;height:18px;border:1.5px solid var(--olive);color:var(--olive);font:600 11px/18px var(--sans);text-align:center}
+
+  footer{border-top:1px solid var(--line);padding:34px 0 60px;font-size:13px;color:var(--graphite)}
+  footer code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;background:var(--paper);border:1px solid var(--line);padding:2px 6px}
+  :is(a,button):focus-visible{outline:2px solid var(--terracotta);outline-offset:2px}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="label">Visual explanation · niateks house website</p>
+    <h1>Website imagery —<br>current state &amp; the road to high&nbsp;quality</h1>
+    <p class="sub">The homepage is fully built: layout, typography, navigation, SEO and accessibility are final.
+    What it deliberately does <strong>not</strong> have yet is photography — all 13 image slots are styled placeholders.
+    This page maps every slot, who owns each next step, and exactly what changes between today and a high-quality final page.</p>
+
+    <div class="stats" role="list" aria-label="Slot summary">
+      <div class="stat" role="listitem"><b>13</b><span>image slots total</span></div>
+      <div class="stat" role="listitem"><b>2</b><span>AI-generate (prompts ready)</span></div>
+      <div class="stat" role="listitem"><b>8</b><span>source from stock</span></div>
+      <div class="stat" role="listitem"><b>3</b><span>on hold — real product data</span></div>
+      <div class="stat" role="listitem"><b>6</b><span>must-have priority</span></div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ MAP ============ -->
+<section id="map">
+  <div class="wrap">
+    <p class="label">The map</p>
+    <h2>Where the images live on the homepage</h2>
+    <p class="sub">Sections in scroll order. Numbered dots are image slots — click one to jump to its full spec below.
+    Dark boxes are charcoal sections; they impose extra contrast rules on the images behind them.</p>
+
+    <div class="map" aria-label="Homepage section map">
+      <div class="sec"><p class="sec-name">Navigation</p><p class="sec-sub">no image</p></div>
+      <div class="sec"><p class="sec-name">Hero</p><p class="sec-sub">full-bleed</p>
+        <div class="chips"><button class="slotchip slotchip--ai" data-target="slot-1" aria-label="Slot 1, hero, AI generate — see spec">1</button></div></div>
+      <div class="sec"><p class="sec-name">The House</p><p class="sec-sub">intro split</p>
+        <div class="chips"><button class="slotchip slotchip--stock" data-target="slot-2" aria-label="Slot 2, intro, stock — see spec">2</button></div></div>
+      <div class="sec"><p class="sec-name">Collections</p><p class="sec-sub">4 cards + 1 text card</p>
+        <div class="chips">
+          <button class="slotchip slotchip--stock" data-target="slot-3" aria-label="Slot 3, kitchen card, stock">3</button>
+          <button class="slotchip slotchip--stock" data-target="slot-4" aria-label="Slot 4, table card, stock">4</button>
+          <button class="slotchip slotchip--stock" data-target="slot-5" aria-label="Slot 5, bath card, stock">5</button>
+          <button class="slotchip slotchip--stock" data-target="slot-6" aria-label="Slot 6, hospitality card, stock">6</button>
+        </div></div>
+      <div class="sec"><p class="sec-name">Material &amp; Design</p><p class="sec-sub">story pair</p>
+        <div class="chips">
+          <button class="slotchip slotchip--stock" data-target="slot-7" aria-label="Slot 7, weave macro, stock">7</button>
+          <button class="slotchip slotchip--stock" data-target="slot-8" aria-label="Slot 8, drape, stock">8</button>
+        </div></div>
+      <div class="sec sec--dark"><p class="sec-name">Craftsmanship</p><p class="sec-sub">full-bleed dark</p>
+        <div class="chips"><button class="slotchip slotchip--ai" data-target="slot-9" aria-label="Slot 9, craft band, AI generate — see spec">9</button></div></div>
+      <div class="sec"><p class="sec-name">Process</p><p class="sec-sub">numbered list · no image</p></div>
+      <div class="sec"><p class="sec-name">Selected pieces</p><p class="sec-sub">3 product cards</p>
+        <div class="chips">
+          <button class="slotchip slotchip--hold" data-target="slot-10" aria-label="Slot 10, product kitchen, on hold">10</button>
+          <button class="slotchip slotchip--hold" data-target="slot-11" aria-label="Slot 11, product table, on hold">11</button>
+          <button class="slotchip slotchip--hold" data-target="slot-12" aria-label="Slot 12, product bath, on hold">12</button>
+        </div></div>
+      <div class="sec"><p class="sec-name">About teaser</p><p class="sec-sub">split</p>
+        <div class="chips"><button class="slotchip slotchip--stock" data-target="slot-13" aria-label="Slot 13, studio, stock">13</button></div></div>
+      <div class="sec sec--dark"><p class="sec-name">Inquiry CTA</p><p class="sec-sub">dark · no image</p></div>
+      <div class="sec"><p class="sec-name">Footer</p><p class="sec-sub">no image</p></div>
+    </div>
+
+    <div class="legend">
+      <span><i class="lg-ai"></i>AI-generate</span>
+      <span><i class="lg-stock"></i>Source from stock</span>
+      <span><i class="lg-hold"></i>On hold (real product photography)</span>
+    </div>
+    <p class="mapnote">Ten slots block on assets; three block on data. Nine of the thirteen sit in the first five
+    screens of the page — the first impression is where imagery quality matters most.</p>
+  </div>
+</section>
+
+<!-- ============ SLOT CARDS ============ -->
+<section id="slots" style="padding-top:8px">
+  <div class="wrap">
+    <p class="label">The inventory</p>
+    <h2>All 13 slots — full specification</h2>
+    <p class="sub">Each card: exact code selector, ratio (drawn to scale), source, priority, composition, focal point,
+    filename and the final alt text. Keywords and the full avoid-list live in
+    <code style="font-size:12px">design-system/IMAGE-SOURCING-LIST.md</code>.</p>
+
+    <div class="filters" role="group" aria-label="Filter slots by source">
+      <button class="fbtn" data-filter="all" aria-pressed="true">All 13</button>
+      <button class="fbtn" data-filter="ai" aria-pressed="false">AI-generate (2)</button>
+      <button class="fbtn" data-filter="stock" aria-pressed="false">Stock (8)</button>
+      <button class="fbtn" data-filter="hold" aria-pressed="false">On hold (3)</button>
+    </div>
+
+    <div class="grid" id="cardgrid">
+
+      <article class="card" id="slot-1" data-src="ai">
+        <div class="card-head"><span class="num">1</span><div><h3>Hero</h3><p class="sel">.hero__placeholder--table</p></div></div>
+        <div class="badges"><span class="badge b-ai">AI-generate</span><span class="badge b-must">Must have</span></div>
+        <div class="ratio-row"><i class="rg" style="aspect-ratio:16/9" aria-hidden="true"></i><p class="ratio-txt"><strong>16:9</strong> desktop ≥2400px<br>+ <strong>separate 4:5</strong> mobile crop — never a downscaled 16:9</p></div>
+        <dl class="rows">
+          <dt>Subject</dt><dd>Dressed washed-linen table: stoneware plates, carafe, folded napkins, olive branch; lime-plaster wall, oak floor</dd>
+          <dt>Composition</dt><dd>Setting in <strong>right half only</strong>; left 45% calm empty wall = typography zone</dd>
+          <dt>Focal point</dt><dd><code>object-position:100% 55%</code> · mobile centers setting</dd>
+          <dt>Files</dt><dd><code>hero/hero-table-morning-2400.avif</code> (+1600/+1080) + mobile 4:5</dd>
+          <dt>Prompt</dt><dd>Ready to run — <code>HOMEPAGE-DESIGN-BLUEPRINT.md</code> §Hero, incl. negative prompt</dd>
+        </dl>
+        <p class="kw"><b>Backup keywords:</b> linen table setting morning light · natural linen tablecloth ceramics · minimal tablescape</p>
+      </article>
+
+      <article class="card" id="slot-2" data-src="stock">
+        <div class="card-head"><span class="num">2</span><div><h3>Intro — linen stack</h3><p class="sel">.imgslot--intro</p></div></div>
+        <div class="badges"><span class="badge b-stock">Stock</span><span class="badge b-rec">Recommended</span></div>
+        <div class="ratio-row"><i class="rg" style="aspect-ratio:4/5" aria-hidden="true"></i><p class="ratio-txt"><strong>4:5</strong> portrait · ≥1400px wide</p></div>
+        <dl class="rows">
+          <dt>Subject</dt><dd>Folded stack of natural linen, soft window light — texture, not a styled scene</dd>
+          <dt>Composition</dt><dd>Stack fills lower two-thirds; calm wall above; raking side-light</dd>
+          <dt>Focal point</dt><dd><code>object-position:50% 65%</code></dd>
+          <dt>Files</dt><dd><code>intro/intro-linen-stack.jpg</code></dd>
+          <dt>Alt (final)</dt><dd>Folded natural linen textiles in soft window light</dd>
+        </dl>
+        <p class="kw"><b>Keywords:</b> folded linen stack · linen folded window light · neutral linen textile stack · folded fabrics beige minimal</p>
+      </article>
+
+      <article class="card" id="slot-3" data-src="stock">
+        <div class="card-head"><span class="num">3</span><div><h3>Collection card — Kitchen</h3><p class="sel">.imgslot--kitchen</p></div></div>
+        <div class="badges"><span class="badge b-stock">Stock</span><span class="badge b-must">Must have</span></div>
+        <div class="ratio-row"><i class="rg" style="aspect-ratio:3/2" aria-hidden="true"></i><p class="ratio-txt"><strong>3:2</strong> landscape (lead card) · ≥1600px wide</p></div>
+        <dl class="rows">
+          <dt>Subject</dt><dd>Linen tea towel on oven rail / linen apron, wooden surface</dd>
+          <dt>Composition</dt><dd>One hero prop, subject right-of-center, breathing space left — not a busy flat-lay</dd>
+          <dt>Focal point</dt><dd><code>object-position:60% 50%</code></dd>
+          <dt>Files</dt><dd><code>collections/collection-kitchen.jpg</code></dd>
+          <dt>Alt (final)</dt><dd>Natural linen kitchen textiles on a wooden counter</dd>
+        </dl>
+        <p class="kw"><b>Keywords:</b> linen tea towel kitchen · linen apron minimal kitchen · natural linen kitchen styling</p>
+      </article>
+
+      <article class="card" id="slot-4" data-src="stock">
+        <div class="card-head"><span class="num">4</span><div><h3>Collection card — Table</h3><p class="sel">.imgslot--table</p></div></div>
+        <div class="badges"><span class="badge b-stock">Stock</span><span class="badge b-must">Must have</span></div>
+        <div class="ratio-row"><i class="rg" style="aspect-ratio:3/4" aria-hidden="true"></i><p class="ratio-txt"><strong>3:4</strong> portrait · ≥1300px wide</p></div>
+        <dl class="rows">
+          <dt>Subject</dt><dd>Dressed table, slight angle — must read as a <em>different frame</em> from the hero (no olive branch, tighter)</dd>
+          <dt>Composition</dt><dd>Table edge low in frame; place setting upper half</dd>
+          <dt>Focal point</dt><dd><code>object-position:50% 45%</code></dd>
+          <dt>Files</dt><dd><code>collections/collection-table.jpg</code></dd>
+          <dt>Alt (final)</dt><dd>Dressed table setting in natural linen</dd>
+        </dl>
+        <p class="kw"><b>Keywords:</b> linen table setting · linen napkin plate setting · editorial dinner table linen</p>
+      </article>
+
+      <article class="card" id="slot-5" data-src="stock">
+        <div class="card-head"><span class="num">5</span><div><h3>Collection card — Bath</h3><p class="sel">.imgslot--bath</p></div></div>
+        <div class="badges"><span class="badge b-stock">Stock</span><span class="badge b-must">Must have</span></div>
+        <div class="ratio-row"><i class="rg" style="aspect-ratio:3/4" aria-hidden="true"></i><p class="ratio-txt"><strong>3:4</strong> portrait · ≥1300px wide</p></div>
+        <dl class="rows">
+          <dt>Subject</dt><dd>Folded / rolled cotton &amp; waffle towels, warm neutrals — <strong>no spa clichés</strong> (no orchids, candles, stone)</dd>
+          <dt>Composition</dt><dd>Stack lower two-thirds; calm wall above</dd>
+          <dt>Focal point</dt><dd><code>object-position:50% 60%</code></dd>
+          <dt>Files</dt><dd><code>collections/collection-bath.jpg</code></dd>
+          <dt>Alt (final)</dt><dd>Folded cotton bath towels in warm neutral tones</dd>
+        </dl>
+        <p class="kw"><b>Keywords:</b> folded cotton towels · stack of beige towels · waffle cotton towel · natural cotton towels neutral</p>
+      </article>
+
+      <article class="card" id="slot-6" data-src="stock">
+        <div class="card-head"><span class="num">6</span><div><h3>Collection card — Hospitality</h3><p class="sel">.imgslot--hospitality</p></div></div>
+        <div class="badges"><span class="badge b-stock">Stock</span><span class="badge b-must">Must have</span></div>
+        <div class="ratio-row"><i class="rg" style="aspect-ratio:4/3" aria-hidden="true"></i><p class="ratio-txt"><strong>4:3</strong> landscape (wide card) · ≥1600px wide</p></div>
+        <dl class="rows">
+          <dt>Subject</dt><dd>Restaurant / hotel table dressed in linen for service — empty room, no guests, no staff</dd>
+          <dt>Composition</dt><dd>Table runs diagonally or fills lower half; visible room depth signals <em>contract scale</em></dd>
+          <dt>Focal point</dt><dd><code>object-position:50% 55%</code></dd>
+          <dt>Files</dt><dd><code>collections/collection-hospitality.jpg</code></dd>
+          <dt>Alt (final)</dt><dd>Restaurant table dressed with natural linen</dd>
+        </dl>
+        <p class="kw"><b>Keywords:</b> restaurant table linen setting · hotel restaurant tablecloth · empty restaurant table natural linen</p>
+      </article>
+
+      <article class="card" id="slot-7" data-src="stock">
+        <div class="card-head"><span class="num">7</span><div><h3>Material — weave macro</h3><p class="sel">.imgslot--weave</p></div></div>
+        <div class="badges"><span class="badge b-stock">Stock</span><span class="badge b-rec">Recommended</span></div>
+        <div class="ratio-row"><i class="rg" style="aspect-ratio:4/5" aria-hidden="true"></i><p class="ratio-txt"><strong>4:5</strong> portrait · ≥1300px wide</p></div>
+        <dl class="rows">
+          <dt>Subject</dt><dd>Extreme close-up of linen weave — thread structure, slubs, tactile relief</dd>
+          <dt>Composition</dt><dd>Macro fills the frame edge-to-edge; raking side-light reveals relief</dd>
+          <dt>Focal point</dt><dd><code>object-position:50% 50%</code></dd>
+          <dt>Files</dt><dd><code>material/material-weave.jpg</code></dd>
+          <dt>Alt (final)</dt><dd>Close-up of natural linen weave</dd>
+        </dl>
+        <p class="kw"><b>Keywords:</b> linen fabric macro · linen weave close up · natural fabric threads macro</p>
+      </article>
+
+      <article class="card" id="slot-8" data-src="stock">
+        <div class="card-head"><span class="num">8</span><div><h3>Material — drape</h3><p class="sel">.imgslot--drape</p></div></div>
+        <div class="badges"><span class="badge b-stock">Stock</span><span class="badge b-rec">Recommended</span></div>
+        <div class="ratio-row"><i class="rg" style="aspect-ratio:4/5" aria-hidden="true"></i><p class="ratio-txt"><strong>4:5</strong> portrait · ≥1300px wide</p></div>
+        <dl class="rows">
+          <dt>Subject</dt><dd>Linen curtain with daylight passing through — the material living in a room</dd>
+          <dt>Composition</dt><dd>Fabric fills two-thirds; soft window glow behind; gentle folds, no furniture</dd>
+          <dt>Focal point</dt><dd><code>object-position:40% 50%</code></dd>
+          <dt>Files</dt><dd><code>material/material-drape.jpg</code></dd>
+          <dt>Alt (final)</dt><dd>Natural linen drapery in daylight</dd>
+        </dl>
+        <p class="kw"><b>Keywords:</b> linen curtain window light · sheer linen drapery · light through linen curtain</p>
+      </article>
+
+      <article class="card" id="slot-9" data-src="ai">
+        <div class="card-head"><span class="num">9</span><div><h3>Craft band (dark section)</h3><p class="sel">.hero__placeholder--craft</p></div></div>
+        <div class="badges"><span class="badge b-ai">AI-generate</span><span class="badge b-must">Must have</span></div>
+        <div class="ratio-row"><i class="rg" style="aspect-ratio:16/9" aria-hidden="true"></i><p class="ratio-txt"><strong>16:9</strong> ≥2400px · hands stay centered in the tighter 4:5 mobile crop</p></div>
+        <dl class="rows">
+          <dt>Subject</dt><dd><strong>Hands only</strong> — stitching, pressing or finishing linen in atelier daylight. No faces (brand rule + no model release needed)</dd>
+          <dt>Composition</dt><dd>Hands lower-right third; calm workbench upper-left where the heading sits <em>over the charcoal scrim</em> — image needs mid-tone depth, not brightness</dd>
+          <dt>Focal point</dt><dd><code>object-position:70% 60%</code></dd>
+          <dt>Files</dt><dd><code>craft/craft-atelier-2400.avif</code> (+1600/+1080)</dd>
+          <dt>Prompt</dt><dd>GDS §15 house style, hands-only atelier scene; blueprint negative prompt</dd>
+        </dl>
+        <p class="kw"><b>Backup keywords:</b> sewing linen hands atelier · hands stitching fabric natural light · tailor hands linen</p>
+      </article>
+
+      <article class="card" id="slot-10" data-src="hold">
+        <div class="card-head"><span class="num">10</span><div><h3>Product card — Kitchen</h3><p class="sel">.imgslot--p1</p></div></div>
+        <div class="badges"><span class="badge b-hold">On hold</span><span class="badge b-defer">Deferred</span></div>
+        <div class="ratio-row"><i class="rg" style="aspect-ratio:3/4" aria-hidden="true"></i><p class="ratio-txt"><strong>3:4</strong> portrait · ≥1300px wide</p></div>
+        <dl class="rows">
+          <dt>Status</dt><dd><strong>Do not source from stock.</strong> These three frames must be real NIATEKS product photography — stock here would put fake products on the homepage.</dd>
+          <dt>When ready</dt><dd>Single piece on ivory/sand seamless backdrop, soft directional light</dd>
+          <dt>Files</dt><dd><code>products/product-kitchen.jpg</code></dd>
+          <dt>Blocked on</dt><dd>Real product names, data &amp; photography from NIATEKS</dd>
+        </dl>
+      </article>
+
+      <article class="card" id="slot-11" data-src="hold">
+        <div class="card-head"><span class="num">11</span><div><h3>Product card — Table</h3><p class="sel">.imgslot--p2</p></div></div>
+        <div class="badges"><span class="badge b-hold">On hold</span><span class="badge b-defer">Deferred</span></div>
+        <div class="ratio-row"><i class="rg" style="aspect-ratio:3/4" aria-hidden="true"></i><p class="ratio-txt"><strong>3:4</strong> portrait · ≥1300px wide</p></div>
+        <dl class="rows">
+          <dt>Status</dt><dd><strong>Do not source from stock</strong> — same integrity rule as slot 10</dd>
+          <dt>Files</dt><dd><code>products/product-table.jpg</code></dd>
+          <dt>Blocked on</dt><dd>Real product data from NIATEKS</dd>
+        </dl>
+      </article>
+
+      <article class="card" id="slot-12" data-src="hold">
+        <div class="card-head"><span class="num">12</span><div><h3>Product card — Bath</h3><p class="sel">.imgslot--p3</p></div></div>
+        <div class="badges"><span class="badge b-hold">On hold</span><span class="badge b-defer">Deferred</span></div>
+        <div class="ratio-row"><i class="rg" style="aspect-ratio:3/4" aria-hidden="true"></i><p class="ratio-txt"><strong>3:4</strong> portrait · ≥1300px wide</p></div>
+        <dl class="rows">
+          <dt>Status</dt><dd><strong>Do not source from stock</strong> — same integrity rule as slot 10</dd>
+          <dt>Files</dt><dd><code>products/product-bath.jpg</code></dd>
+          <dt>Blocked on</dt><dd>Real product data from NIATEKS</dd>
+        </dl>
+      </article>
+
+      <article class="card" id="slot-13" data-src="stock">
+        <div class="card-head"><span class="num">13</span><div><h3>About teaser — studio</h3><p class="sel">.imgslot--atelier</p></div></div>
+        <div class="badges"><span class="badge b-stock">Stock</span><span class="badge b-rec">Recommended</span></div>
+        <div class="ratio-row"><i class="rg" style="aspect-ratio:3/2" aria-hidden="true"></i><p class="ratio-txt"><strong>3:2</strong> landscape · ≥1600px wide</p></div>
+        <dl class="rows">
+          <dt>Subject</dt><dd>Material library: open shelving with swatches and small styled rolls — not factory-scale rolls; no people, no desks</dd>
+          <dt>Composition</dt><dd>Shelf rhythm fills the frame; warm light</dd>
+          <dt>Focal point</dt><dd><code>object-position:50% 45%</code></dd>
+          <dt>Files</dt><dd><code>about/about-studio.jpg</code></dd>
+          <dt>Alt (final)</dt><dd>Material library in the Niateks House studio</dd>
+        </dl>
+        <p class="kw"><b>Keywords:</b> textile design studio shelves · fabric samples shelf · material library design studio</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUALITY GAPS ============ -->
+<section id="quality" class="dark-band">
+  <div class="wrap">
+    <p class="label">The gap analysis</p>
+    <h2>What separates today&rsquo;s page from high quality</h2>
+    <p class="sub">Six upgrades, in order of visual impact. Two are yours (assets), one is blocked on data, three happen
+    automatically when the files arrive.</p>
+
+    <div class="gap">
+      <div class="gap-head"><span class="gap-no">G1</span><h3>Real photography replaces gradient slots</h3><span class="pill pill--now">Action now</span></div>
+      <div class="tt">
+        <div class="today"><span class="tag">Today</span>10 slots show warm gradient placeholders labeled &ldquo;Image pending&rdquo;. Composition and ratios are final — the frames are simply empty.</div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="target"><span class="tag">Target</span>Every slot filled per its card above: 2 AI-generated frames (exact negative-space control) + 8 licensed stock images, all warm-neutral, all faceless, all on-brand.</div>
+      </div>
+    </div>
+
+    <div class="gap">
+      <div class="gap-head"><span class="gap-no">G2</span><h3>The hero frame — the single biggest quality lever</h3><span class="pill pill--now">Action now</span></div>
+      <div class="tt">
+        <div class="today"><span class="tag">Today</span>Gradient hero; typography sits on a predictable but lifeless surface. First impression carries no material story.</div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="target"><span class="tag">Target</span>The AI-generated morning table scene with the reserved left wall: Cormorant headline lands on calm plaster, linen texture speaks on the right — DESIGN + MATERIAL + CRAFT in one frame.</div>
+      </div>
+    </div>
+
+    <div class="gap">
+      <div class="gap-head"><span class="gap-no">G3</span><h3>Technical image delivery</h3><span class="pill">Automatic on arrival</span></div>
+      <div class="tt">
+        <div class="today"><span class="tag">Today</span>CSS background slots: zero download cost, zero CLS — but zero photography.</div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="target"><span class="tag">Target</span>Real <code style="color:#D6D1C4">&lt;img&gt;</code> with AVIF/WebP + JPG fallback, <code style="color:#D6D1C4">srcset</code> (2400/1600/1080), <code style="color:#D6D1C4">sizes</code>, explicit width/height (CLS ≈ 0), lazy-loading below the fold, hero <code style="color:#D6D1C4">fetchpriority="high"</code> for LCP.</div>
+      </div>
+    </div>
+
+    <div class="gap">
+      <div class="gap-head"><span class="gap-no">G4</span><h3>Focal-point &amp; crop discipline</h3><span class="pill">Automatic on arrival</span></div>
+      <div class="tt">
+        <div class="today"><span class="tag">Today</span>Placeholder slots have fixed aspect-ratios — nothing can crop badly yet.</div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="target"><span class="tag">Target</span>Each slot&rsquo;s <code style="color:#D6D1C4">object-position</code> applied per the cards above, then verified at 1440 / 768 / 375 so no key object is ever cut.</div>
+      </div>
+    </div>
+
+    <div class="gap">
+      <div class="gap-head"><span class="gap-no">G5</span><h3>Metadata, licensing &amp; alt text</h3><span class="pill">Mixed</span></div>
+      <div class="tt">
+        <div class="today"><span class="tag">Today</span>Alt texts are placeholder-labeled by design (honest, but not final). No licenses to record yet.</div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="target"><span class="tag">Target</span>Final alt text already written per slot (swap in with the image); source URL + license recorded for every stock file; product alt texts finalize with real names.</div>
+      </div>
+    </div>
+
+    <div class="gap">
+      <div class="gap-head"><span class="gap-no">G6</span><h3>Product cards stay honest</h3><span class="pill">Blocked on data</span></div>
+      <div class="tt">
+        <div class="today"><span class="tag">Today</span>&ldquo;Collection piece — Kitchen/Table/Bath&rdquo; with &ldquo;Final product names &amp; data pending&rdquo;.</div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="target"><span class="tag">Target</span>Real product photography + real names + real specs, linked to true product pages. <strong style="color:#E8B29A">Never</strong> filled with lookalike stock — that rule is what keeps the site trustworthy.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RULES ============ -->
+<section id="avoid">
+  <div class="wrap">
+    <p class="label">Quality guardrails</p>
+    <h2>Rules that protect the quality once images arrive</h2>
+    <p class="sub">Applies to every search, every generation, every crop — no exceptions.</p>
+
+    <div style="margin-top:24px">
+      <span class="ban">watermarks &amp; logos</span><span class="ban">text inside images</span><span class="ban">CGI / plastic sheen</span><span class="ban">HDR oversaturation</span><span class="ban">cool blue cast</span><span class="ban">gold &amp; marble luxury clichés</span><span class="ban">factory floors &amp; machinery</span><span class="ban">giant fabric rolls</span><span class="ban">spa orchids &amp; candles</span><span class="ban">people looking at camera</span><span class="ban">handshakes</span><span class="ban">cluttered propping</span>
+    </div>
+
+    <ul class="rule-list">
+      <li><span class="tick">1</span><span><strong>No identifiable faces anywhere</strong> — hands-only, from-behind or faceless crops. Brand-safe, more editorial, and no model-release exposure.</span></li>
+      <li><span class="tick">2</span><span><strong>One photographic language</strong> — soft directional daylight, warm ivory/sand/olive palette, tactile material focus. Any image that fights it gets rejected, however good.</span></li>
+      <li><span class="tick">3</span><span><strong>Record the source URL of every stock image</strong> even where attribution isn&rsquo;t required — one row per file in the sourcing list.</span></li>
+      <li><span class="tick">4</span><span><strong>Never fake products</strong> — slots 10–12 wait for real NIATEKS photography, however long it takes.</span></li>
+      <li><span class="tick">5</span><span><strong>Contrast over images is checked, not assumed</strong> — the craft-band scrim exists so white text passes AA; the hero&rsquo;s left wall must stay calm for the same reason.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ PATH ============ -->
+<section id="path" style="padding-top:24px">
+  <div class="wrap">
+    <p class="label">The path</p>
+    <h2>From placeholders to final — five steps</h2>
+    <div class="steps">
+      <div class="step"><b>Generate the AI frames</b><span>Hero + craft band from the ready prompts (Midjourney / DALL·E / Firefly).</span><em>You · prompts ready</em></div>
+      <div class="step"><b>Source the stock eight</b><span>Search with the per-slot keywords; apply the avoid-list; download largest size.</span><em>You · list ready</em></div>
+      <div class="step"><b>Drop files into assets/images/</b><span>Exact filenames per the cards — no renaming needed.</span><em>You · 5 minutes</em></div>
+      <div class="step"><b>Swap &amp; optimize</b><span>Placeholders → real &lt;img&gt;: AVIF/WebP, srcset, lazy-loading, focal points, final alt.</span><em>Me · automatic</em></div>
+      <div class="step"><b>Final QA</b><span>Crops at 3 breakpoints, contrast over scrims, LCP/CLS, console, alt audit.</span><em>Me · homepage = final</em></div>
+    </div>
+    <p class="sub" style="margin-top:26px">Steps 4–5 cost you nothing: the moment the files exist, the swap, optimization and QA are a single instruction away. Product cards (10–12) simply stay placeholders until real NIATEKS data arrives.</p>
+  </div>
+</section>
+
+<!-- ============ DEFINITION OF DONE ============ -->
+<section id="dof" style="padding-top:8px">
+  <div class="wrap">
+    <p class="label">Definition of done</p>
+    <h2>&ldquo;High quality&rdquo; means all of this</h2>
+    <ul class="dof">
+      <li>All 10 asset slots filled with on-brand photography</li>
+      <li>Hero typography zone calm &amp; readable on both 16:9 and 4:5 crops</li>
+      <li>No key object cropped at 1440 / 768 / 375</li>
+      <li>AVIF/WebP served, JPG fallback in place</li>
+      <li>srcset + sizes on every responsive image</li>
+      <li>LCP image uses fetchpriority="high"</li>
+      <li>Explicit width/height — CLS ≈ 0</li>
+      <li>Lazy loading on everything below the fold</li>
+      <li>White text over dark-band images passes AA under scrim</li>
+      <li>Final alt text on every image; decorative layers aria-hidden</li>
+      <li>Source URL + license recorded for every stock file</li>
+      <li>No faces, no logos, no banned patterns — avoid-list sweep clean</li>
+      <li>Zero console errors after the swap</li>
+      <li>Product slots still honest (real data or labeled placeholder)</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><strong>Sources:</strong> <code>design-system/IMAGE-SOURCING-LIST.md</code> (per-slot specs &amp; keywords) ·
+    <code>design-system/HOMEPAGE-DESIGN-BLUEPRINT.md</code> (hero AI prompt + negative prompt) ·
+    <code>design-system/GLOBAL-DESIGN-SYSTEM.md</code> §13–15 (ratios, photography language, AI style) ·
+    <code>index.html</code> (live slots). Visual explanation generated Sept 2026.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var motionOK = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* filter */
+  var btns = document.querySelectorAll(".fbtn");
+  var cards = document.querySelectorAll(".card");
+  btns.forEach(function(b){
+    b.addEventListener("click", function(){
+      btns.forEach(function(x){ x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+      var f = b.getAttribute("data-filter");
+      cards.forEach(function(c){
+        c.classList.toggle("is-hidden", f !== "all" && c.getAttribute("data-src") !== f);
+      });
+    });
+  });
+
+  /* map chip -> scroll to card + flash */
+  document.querySelectorAll(".slotchip").forEach(function(ch){
+    ch.addEventListener("click", function(){
+      var t = document.getElementById(ch.getAttribute("data-target"));
+      if(!t) return;
+      t.scrollIntoView({ behavior: motionOK ? "smooth" : "auto", block: "center" });
+      t.classList.remove("flash");
+      void t.offsetWidth; /* restart animation */
+      t.classList.add("flash");
+      window.setTimeout(function(){ t.classList.remove("flash"); }, 1800);
+    });
+  });
+})();
+</script>
+</body>
+</html>

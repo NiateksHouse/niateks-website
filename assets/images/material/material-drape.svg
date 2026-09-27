@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1250" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="t d">
+  <title id="t">Natural linen drapery in daylight</title>
+  <desc id="d">A floor-length linen curtain with daylight passing through: gentle vertical folds, soft glow behind the fabric, no furniture — the material living in a room.</desc>
+  <defs>
+    <linearGradient id="glowD" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FAF7EF"/><stop offset="1" stop-color="#EFEAD9"/></linearGradient>
+    <linearGradient id="linD" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#E9E2CF"/><stop offset="1" stop-color="#F3EEE1"/></linearGradient>
+    <linearGradient id="foldD" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#D8CEB6" stop-opacity="0"/><stop offset="0.5" stop-color="#C9BEA2" stop-opacity="0.55"/><stop offset="1" stop-color="#D8CEB6" stop-opacity="0"/></linearGradient>
+    <linearGradient id="floorD" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D5C8AC"/><stop offset="1" stop-color="#C9BB9E"/></linearGradient>
+  </defs>
+  <rect width="1000" height="1250" fill="url(#glowD)"/>
+  <rect y="1130" width="1000" height="120" fill="url(#floorD)"/>
+
+  <!-- curtain panel: soft vertical folds -->
+  <g>
+    <path d="M40 40 q-18 300 -10 1090 q120 30 240 0 q-14 -760 -8 -1090 q-110 -26 -222 0 Z" fill="url(#linD)"/>
+    <path d="M282 34 q-16 320 -8 1098 q130 28 260 0 q-12 -780 -6 -1098 q-122 -24 -246 0 Z" fill="url(#linD)"/>
+    <path d="M524 32 q-18 330 -10 1100 q130 26 260 0 q-14 -780 -8 -1100 q-120 -24 -242 0 Z" fill="url(#linD)"/>
+    <path d="M766 36 q-16 320 -8 1096 q110 28 222 0 q-12 -770 -6 -1096 q-104 -26 -208 0 Z" fill="url(#linD)"/>
+  </g>
+  <!-- fold shading -->
+  <g opacity="0.8">
+    <rect x="150" y="40" width="46" height="1090" fill="url(#foldD)"/>
+    <rect x="392" y="36" width="46" height="1098" fill="url(#foldD)"/>
+    <rect x="634" y="32" width="46" height="1100" fill="url(#foldD)"/>
+    <rect x="876" y="38" width="40" height="1094" fill="url(#foldD)"/>
+  </g>
+  <!-- light passing through the middle panel -->
+  <rect x="560" y="30" width="150" height="1110" fill="#FBF8F0" opacity="0.35"/>
+  <!-- hem + soft floor shadow -->
+  <path d="M30 1130 q240 40 480 36 q260 -4 470 -36" stroke="#D3C9B0" stroke-width="3" fill="none" opacity="0.7"/>
+  <ellipse cx="500" cy="1160" rx="430" ry="20" fill="#4A463C" opacity="0.10"/>
+</svg>

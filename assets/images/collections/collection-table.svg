@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="t d">
+  <title id="t">Dressed table setting in natural linen, seen at a slight angle</title>
+  <desc id="d">A linen-dressed table seen from a slight angle: plate, folded napkin and carafe in the upper half, table edge low in the frame; soft daylight from the right, warm neutral palette.</desc>
+  <defs>
+    <linearGradient id="clothT" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F1ECE0"/><stop offset="1" stop-color="#E2DACA"/></linearGradient>
+    <linearGradient id="shadeT" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#4A463C" stop-opacity="0.10"/><stop offset="0.6" stop-color="#4A463C" stop-opacity="0"/><stop offset="1" stop-color="#4A463C" stop-opacity="0"/></linearGradient>
+    <radialGradient id="plateT" cx="0.36" cy="0.34" r="0.9"><stop offset="0" stop-color="#EDE7D9"/><stop offset="1" stop-color="#C6BBA3"/></radialGradient>
+    <linearGradient id="napT" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EFE9DC"/><stop offset="1" stop-color="#D3CAB5"/></linearGradient>
+  </defs>
+
+  <rect width="900" height="1200" fill="url(#clothT)"/>
+  <rect width="900" height="1200" fill="url(#shadeT)"/>
+  <g stroke="#DDD5C3" stroke-width="1.2" opacity="0.5">
+    <line x1="0" y1="140" x2="900" y2="140"/><line x1="0" y1="260" x2="900" y2="260"/>
+    <line x1="0" y1="380" x2="900" y2="380"/><line x1="0" y1="500" x2="900" y2="500"/>
+    <line x1="0" y1="620" x2="900" y2="620"/><line x1="0" y1="740" x2="900" y2="740"/>
+  </g>
+
+  <!-- table edge low in frame -->
+  <rect y="984" width="900" height="216" fill="#CFC5AE"/>
+  <rect y="976" width="900" height="10" fill="#BFB49A" opacity="0.7"/>
+
+  <!-- place setting (upper half) -->
+  <ellipse cx="450" cy="360" rx="170" ry="52" fill="#B7AC90" opacity="0.35"/>
+  <ellipse cx="450" cy="342" rx="170" ry="52" fill="#EFE9DB"/>
+  <ellipse cx="450" cy="342" rx="128" ry="38" fill="#E3DAC7"/>
+  <ellipse cx="450" cy="342" rx="80" ry="23" fill="#D8CEB8"/>
+
+  <!-- folded napkin across plate -->
+  <rect x="300" y="300" width="300" height="86" rx="6" fill="url(#napT)"/>
+  <rect x="300" y="300" width="300" height="22" fill="#F7F2E6" opacity="0.75"/>
+  <line x1="300" y1="386" x2="600" y2="386" stroke="#C8BFA9" stroke-width="2.5"/>
+
+  <!-- cutlery hints -->
+  <line x1="252" y1="330" x2="252" y2="392" stroke="#A99D82" stroke-width="6" stroke-linecap="round"/>
+  <line x1="654" y1="330" x2="654" y2="392" stroke="#A99D82" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- carafe top-left of setting -->
+  <path d="M138 470 q12 -26 18 -38 q6 12 18 38 q16 36 16 82 q0 48 -34 48 q-34 0 -34 -48 q0 -46 16 -82 Z" fill="#CFC4A9"/>
+  <ellipse cx="156" cy="468" rx="19" ry="6" fill="#A99D82"/>
+  <!-- glass -->
+  <path d="M700 452 l14 0 6 96 q-20 10 -40 0 Z" fill="#DDE0D2" opacity="0.9"/>
+
+  <!-- olive sprig on cloth -->
+  <g stroke="#6E7360" stroke-width="3.5" fill="none" stroke-linecap="round">
+    <path d="M560 760 q40 -40 96 -56"/><path d="M590 742 q22 -4 38 -18"/>
+  </g>
+  <g fill="#73765E">
+    <ellipse cx="566" cy="764" rx="14" ry="5.5" transform="rotate(-30 566 764)"/>
+    <ellipse cx="596" cy="746" rx="14" ry="5.5" transform="rotate(-24 596 746)"/>
+    <ellipse cx="628" cy="728" rx="13" ry="5" transform="rotate(-18 628 728)"/>
+    <ellipse cx="656" cy="708" rx="12" ry="5" transform="rotate(-26 656 708)"/>
+  </g>
+  <circle cx="612" cy="742" r="4" fill="#B66A4A" opacity="0.9"/>
+
+  <!-- long shadows to the left -->
+  <g fill="#4A463C">
+    <ellipse cx="250" cy="520" rx="200" ry="12" opacity="0.07"/>
+    <ellipse cx="330" cy="600" rx="230" ry="12" opacity="0.05"/>
+  </g>
+</svg>

@@ -1,0 +1,6 @@
+# Niateks House — kurumsal web (niateks.com) — git yoksayma listesi
+Thumbs.db
+.DS_Store
+*.swp
+*.log
+tmp_*

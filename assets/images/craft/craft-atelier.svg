@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="t d">
+  <title id="t">Hands stitching linen at a workbench in atelier daylight</title>
+  <desc id="d">Hands-only scene for the craftsmanship band: hands guiding a needle through washed linen at an oak workbench, spools and shears resting nearby, soft directional daylight from the right, calm bench space on the left.</desc>
+  <defs>
+    <linearGradient id="wallC" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E9E3D5"/><stop offset="1" stop-color="#DDD5C2"/></linearGradient>
+    <linearGradient id="rakeC" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#F5F1E8" stop-opacity="0"/><stop offset="1" stop-color="#F7F3EA" stop-opacity="0.9"/></linearGradient>
+    <linearGradient id="bench" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#CBBD9F"/><stop offset="1" stop-color="#BBA cuto"/></linearGradient>
+    <linearGradient id="clothC" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F1ECE0"/><stop offset="1" stop-color="#E1D9C7"/></linearGradient>
+    <linearGradient id="skin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D9B899"/><stop offset="1" stop-color="#C6A181"/></linearGradient>
+    <linearGradient id="skin2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E3C4A6"/><stop offset="1" stop-color="#D0AC8B"/></linearGradient>
+  </defs>
+
+  <!-- wall -->
+  <rect width="1600" height="560" fill="url(#wallC)"/>
+  <rect width="1600" height="560" fill="url(#rakeC)"/>
+  <g opacity="0.3" fill="#E5DFD0"><ellipse cx="360" cy="150" rx="320" ry="130"/><ellipse cx="1020" cy="110" rx="300" ry="110"/></g>
+
+  <!-- window light streaks -->
+  <polygon points="1180,0 1420,0 1300,560 1060,560" fill="#F7F3EA" opacity="0.35"/>
+
+  <!-- workbench -->
+  <rect y="560" width="1600" height="340" fill="url(#bench)"/>
+  <rect y="554" width="1600" height="8" fill="#A6946F" opacity="0.6"/>
+
+  <!-- linen in progress, laid across the bench -->
+  <path d="M430 620 q370 -60 740 0 l30 180 q-400 40 -800 0 Z" fill="url(#clothC)"/>
+  <g stroke="#D6CDB7" stroke-width="2" opacity="0.6">
+    <line x1="470" y1="680" x2="1140" y2="660"/><line x1="450" y1="740" x2="1170" y2="716"/><line x1="440" y1="780" x2="1180" y2="756"/>
+  </g>
+
+  <!-- needle + thread -->
+  <g>
+    <line x1="878" y1="700" x2="940" y2="676" stroke="#8A8D74" stroke-width="4" stroke-linecap="round"/>
+    <path d="M940 676 q60 20 90 70 q26 46 -14 84" stroke="#B66A4A" stroke-width="2.6" fill="none" opacity="0.9"/>
+  </g>
+
+  <!-- FAR HAND (pinned the cloth) -->
+  <g>
+    <path d="M700 656 q-40 -26 -34 -58 q4 -22 30 -20 q26 2 44 34 l14 24 q6 12 -6 18 q-24 12 -48 2 Z" fill="url(#skin)"/>
+    <path d="M706 640 q-24 -16 -22 -34" stroke="#B08B6B" stroke-width="2.5" fill="none" opacity="0.6"/>
+  </g>
+
+  <!-- NEAR HAND (pulling the needle) -->
+  <g>
+    <path d="M948 726 q44 -14 74 6 q22 16 16 40 q-6 22 -34 22 l-84 -6 q-20 -4 -18 -24 q2 -22 46 -38 Z" fill="url(#skin2)"/>
+    <path d="M1006 736 q20 10 24 28" stroke="#B08B6B" stroke-width="2.5" fill="none" opacity="0.6"/>
+    <!-- thumb -->
+    <path d="M972 706 q18 -8 32 2 q10 8 4 20 q-8 12 -26 8 Z" fill="url(#skin2)"/>
+  </g>
+
+  <!-- spools of thread -->
+  <g>
+    <rect x="1180" y="640" width="46" height="70" rx="4" fill="#EDE6D4"/>
+    <rect x="1180" y="652" width="46" height="14" fill="#B66A4A" opacity="0.85"/>
+    <rect x="1180" y="684" width="46" height="14" fill="#B66A4A" opacity="0.85"/>
+    <rect x="1240" y="656" width="40" height="60" rx="4" fill="#EDE6D4"/>
+    <rect x="1240" y="668" width="40" height="12" fill="#73765E" opacity="0.85"/>
+    <rect x="1240" y="696" width="40" height="12" fill="#73765E" opacity="0.85"/>
+  </g>
+  <!-- shears resting -->
+  <g stroke="#7B786C" stroke-width="7" stroke-linecap="round">
+    <line x1="560" y1="812" x2="660" y2="780"/>
+    <line x1="566" y1="830" x2="664" y2="800"/>
+  </g>
+  <circle cx="548" cy="816" r="13" fill="none" stroke="#7B786C" stroke-width="7"/>
+  <circle cx="556" cy="836" r="13" fill="none" stroke="#7B786C" stroke-width="7"/>
+
+  <!-- fabric fold over bench edge -->
+  <path d="M520 792 q60 22 128 26 l-6 84 q-64 -6 -122 -34 Z" fill="#E6DFCB"/>
+
+  <!-- bench shadow -->
+  <ellipse cx="820" cy="852" rx="500" ry="26" fill="#4A463C" opacity="0.14"/>
+</svg>

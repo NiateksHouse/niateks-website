@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="t d">
+  <title id="t">Folded cotton and waffle towels in warm neutral tones</title>
+  <desc id="d">A calm stack of folded cotton and waffle-weave towels on an oak bench against a plaster wall; soft window light, warm neutral palette, no decoration.</desc>
+  <defs>
+    <linearGradient id="wallB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EFEAE0"/><stop offset="1" stop-color="#E2DBCB"/></linearGradient>
+    <linearGradient id="rakeB" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#F5F1E8" stop-opacity="0"/><stop offset="1" stop-color="#F8F4EB" stop-opacity="0.9"/></linearGradient>
+    <linearGradient id="benchB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D2C5AA"/><stop offset="1" stop-color="#C4B697"/></linearGradient>
+    <linearGradient id="tw1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F2EDE1"/><stop offset="1" stop-color="#E0D8C4"/></linearGradient>
+    <linearGradient id="tw2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EBE3D1"/><stop offset="1" stop-color="#D8CEB6"/></linearGradient>
+    <linearGradient id="tw3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E4DBC7"/><stop offset="1" stop-color="#D1C6AB"/></linearGradient>
+  </defs>
+  <rect width="900" height="900" fill="url(#wallB)"/>
+  <rect width="900" height="900" fill="url(#rakeB)"/>
+  <g opacity="0.3" fill="#E7E1D3"><ellipse cx="240" cy="200" rx="260" ry="130"/><ellipse cx="660" cy="140" rx="240" ry="110"/></g>
+
+  <!-- oak bench -->
+  <rect y="900" width="900" height="90" fill="url(#benchB)"/>
+  <rect y="990" width="900" height="210" fill="#E9E2D2"/>
+  <rect y="894" width="900" height="8" fill="#B5A786" opacity="0.6"/>
+
+  <!-- rolled towel standing -->
+  <g>
+    <rect x="300" y="742" width="118" height="150" rx="59" fill="url(#tw1)"/>
+    <path d="M322 742 q36 -20 74 0" stroke="#D9D0BA" stroke-width="3" fill="none"/>
+    <ellipse cx="359" cy="892" rx="59" ry="12" fill="#D5CCB5"/>
+    <ellipse cx="359" cy="888" rx="40" ry="8" fill="#EDE6D4"/>
+  </g>
+
+  <!-- folded stack -->
+  <g>
+    <rect x="450" y="792" width="300" height="98" rx="8" fill="url(#tw2)"/>
+    <rect x="450" y="792" width="300" height="22" fill="#F8F3E7" opacity="0.7"/>
+    <rect x="462" y="700" width="276" height="88" rx="8" fill="url(#tw3)"/>
+    <rect x="462" y="700" width="276" height="20" fill="#F4EFE1" opacity="0.65"/>
+    <!-- waffle texture: diamond grid -->
+    <g stroke="#C9BFA6" stroke-width="1.6" opacity="0.5">
+      <line x1="470" y1="716" x2="540" y2="784"/><line x1="530" y1="716" x2="600" y2="784"/>
+      <line x1="590" y1="716" x2="660" y2="784"/><line x1="650" y1="716" x2="720" y2="784"/>
+      <line x1="540" y1="716" x2="470" y2="784"/><line x1="600" y1="716" x2="530" y2="784"/>
+      <line x1="660" y1="716" x2="590" y2="784"/><line x1="720" y1="716" x2="650" y2="784"/>
+    </g>
+    <!-- terracotta stitch -->
+    <g stroke="#B66A4A" stroke-width="2.5" opacity="0.85"><line x1="480" y1="866" x2="720" y2="866" stroke-dasharray="1 10" stroke-linecap="round"/></g>
+  </g>
+
+  <!-- cast shadow -->
+  <ellipse cx="540" cy="900" rx="300" ry="22" fill="#4A463C" opacity="0.13"/>
+
+  <!-- long light on wall -->
+  <polygon points="760,0 900,0 900,900 640,900" fill="#F7F3EA" opacity="0.16"/>
+</svg>

@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1500" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="t d">
+  <title id="t">Folded stack of natural linen textiles in soft window light</title>
+  <desc id="d">A tall stack of folded natural linen pieces on an oak surface against a lime-plaster wall; soft daylight rakes from the right, catching the fold edges. Lower two-thirds hold the stack, the upper wall stays calm.</desc>
+  <defs>
+    <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#EFEAE0"/><stop offset="1" stop-color="#E3DCCD"/>
+    </linearGradient>
+    <linearGradient id="rake" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#F5F1E8" stop-opacity="0"/>
+      <stop offset="1" stop-color="#F7F3EA" stop-opacity="0.9"/>
+    </linearGradient>
+    <linearGradient id="oak" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#D6C9AF"/><stop offset="1" stop-color="#C8BA9E"/>
+    </linearGradient>
+    <linearGradient id="f1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3EEE2"/><stop offset="1" stop-color="#E6DFCE"/></linearGradient>
+    <linearGradient id="f2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EDE6D6"/><stop offset="1" stop-color="#DDD4BF"/></linearGradient>
+    <linearGradient id="f3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E9E1CF"/><stop offset="1" stop-color="#D8CEB6"/></linearGradient>
+    <linearGradient id="f4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E4DBC6"/><stop offset="1" stop-color="#D2C7AD"/></linearGradient>
+  </defs>
+  <rect width="1200" height="1180" fill="url(#wall)"/>
+  <rect width="1200" height="1180" fill="url(#rake)"/>
+  <g opacity="0.3" fill="#E7E1D3">
+    <ellipse cx="280" cy="240" rx="300" ry="150"/><ellipse cx="860" cy="160" rx="280" ry="120"/><ellipse cx="520" cy="620" rx="320" ry="150"/>
+  </g>
+  <rect y="1180" width="1200" height="320" fill="url(#oak)"/>
+  <rect y="1172" width="1200" height="10" fill="#B8A988" opacity="0.6"/>
+
+  <!-- cast shadow -->
+  <ellipse cx="565" cy="1210" rx="330" ry="30" fill="#4A463C" opacity="0.14"/>
+
+  <!-- folded stack -->
+  <g>
+    <rect x="330" y="1120" width="540" height="74" rx="6" fill="url(#f1)"/>
+    <rect x="330" y="1120" width="540" height="18" fill="#FBF8F0" opacity="0.7"/>
+    <rect x="342" y="1042" width="516" height="74" rx="6" fill="url(#f2)"/>
+    <rect x="342" y="1042" width="516" height="16" fill="#F7F2E6" opacity="0.7"/>
+    <rect x="330" y="964" width="540" height="74" rx="6" fill="url(#f3)"/>
+    <rect x="330" y="964" width="540" height="16" fill="#F4EFE1" opacity="0.65"/>
+    <rect x="350" y="888" width="500" height="72" rx="6" fill="url(#f4)"/>
+    <rect x="350" y="888" width="500" height="15" fill="#F1EBDB" opacity="0.6"/>
+    <!-- fold seams -->
+    <g stroke="#C9BFA8" stroke-width="2" opacity="0.6">
+      <line x1="342" y1="1080" x2="858" y2="1080"/>
+      <line x1="330" y1="1002" x2="870" y2="1002"/>
+      <line x1="350" y1="926" x2="850" y2="926"/>
+    </g>
+    <!-- terracotta stitch detail on second piece -->
+    <g stroke="#B66A4A" stroke-width="2.5" opacity="0.85">
+      <line x1="380" y1="1098" x2="820" y2="1098" stroke-dasharray="1 10" stroke-linecap="round"/>
+    </g>
+    <!-- olive runner edge on top piece -->
+    <rect x="342" y="1036" width="516" height="8" fill="#73765E" opacity="0.55"/>
+  </g>
+
+  <!-- long light streaks on wall -->
+  <g fill="#F7F3EA" opacity="0.5">
+    <polygon points="980,0 1200,0 1200,1180 760,1180" opacity="0.18"/>
+  </g>
+</svg>
